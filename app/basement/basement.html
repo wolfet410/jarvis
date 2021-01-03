@@ -1,0 +1,133 @@
+<md-content>
+  <md-subheader><h3 class="md-headline">Games</h3></md-subheader>
+  <div layout-gt-sm="row" layout-sm="column" layout-padding>
+    <div flex="33">
+      <md-menu>
+        <md-button aria-label="Air Hockey" class="custombtn md-primary md-raised" ng-click="openMenu($mdMenu, $event)">
+          Air Hockey
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="sendcommand('turn on air hockey'); sendcommand('turn on air hockey area light'); 
+              sendcommand('set air hockey area light to white'); sendcommand('set air hockey area light brightness to 100%')">
+              
+              On   
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="sendcommand('turn off air hockey'); sendcommand('turn air hockey area light on');
+              sendcommand('set air hockey area light to purple'); sendcommand('set air hockey area light brightness to 50%')">
+              
+              Back to party mode
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="sendcommand('turn off air hockey'); sendcommand('set air hockey area light to purple');
+              sendcommand('turn off air hockey area light')">
+
+              Off
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+    <div flex="33">
+      <md-menu>
+        <md-button aria-label="Air Hockey" class="custombtn md-primary md-raised" ng-click="openMenu($mdMenu, $event)">
+          Pool
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="sendcommand('turn on air hockey'); sendcommand('turn on air hockey area light'); 
+              sendcommand('set air hockey area light to white'); sendcommand('set air hockey area light brightness to 100%')">
+              
+              On   
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="sendcommand('turn off air hockey'); sendcommand('turn air hockey area light on');
+              sendcommand('set air hockey area light to purple'); sendcommand('set air hockey area light brightness to 50%')">
+              
+              Back to party mode
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="sendcommand('turn off air hockey'); sendcommand('set air hockey area light to purple');
+              sendcommand('turn off air hockey area light')">
+
+              Off
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+    <div flex="33">
+      <md-menu>
+        <md-button aria-label="Air Hockey" class="custombtn md-primary md-raised" ng-click="openMenu($mdMenu, $event)">
+          Ping Pong
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="sendcommand('turn on air hockey'); sendcommand('turn on air hockey area light'); 
+              sendcommand('set air hockey area light to white'); sendcommand('set air hockey area light brightness to 100%')">
+              
+              On   
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="sendcommand('turn off air hockey'); sendcommand('turn air hockey area light on');
+              sendcommand('set air hockey area light to purple'); sendcommand('set air hockey area light brightness to 50%')">
+              
+              Back to party mode
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="sendcommand('turn off air hockey'); sendcommand('set air hockey area light to purple');
+              sendcommand('turn off air hockey area light')">
+
+              Off
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+  </div>
+  <div layout-gt-sm="row" layout-sm="column" layout-padding>
+    <div flex="33">
+      <md-button aria-label="Living Room Light" class="custombtn md-primary md-raised" ng-click="sendcommand('turn off basement light')">
+        Only Watch TV
+      </md-button>
+    </div>
+  </div>
+  <md-subheader><h3 class="md-headline">Lights</h3></md-subheader>
+  <div layout-gt-sm="row" layout-sm="column" layout-padding>
+    <div flex="33">
+      <md-menu>
+        <md-button aria-label="Living Room Light" class="custombtn md-primary md-raised" ng-click="openMenu($mdMenu, $event)">
+          Ceiling Lights
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="sendcommand('switch the living room light')">
+              On/Off            
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="sendcommand('set the living room light brightness to 60%')">            
+              Bright White
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="sendcommand('set the living room light brightness to 25%')">            
+              Purple
+            </md-button>
+          </md-menu-item>
+      </md-menu>
+    </div>
+    <div flex="33">
+      <md-button aria-label="Living Room Light" class="custombtn md-primary md-raised" ng-click="sendcommand('switch basement light')">
+        Stair Light (On/Off)
+      </md-button>
+    </div>
+  </div>
+</md-content>

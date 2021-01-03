@@ -1,0 +1,36 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.custombtn {
+  padding-top: 1.3em;
+  padding-bottom: 1.3em; 
+  padding-right: 2em; 
+  padding-left: 2em; 
+  border-radius: 12px; 
+  background: transparent !important; 
+  border: 3px solid #3F51B5; 
+  box-shadow: 10px 10px 5px #272727;
+}

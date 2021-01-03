@@ -1,0 +1,89 @@
+<md-content>
+  <md-subheader><h3 class="md-headline">Shut Downs</h3></md-subheader>
+  <div layout-gt-sm="row" layout-sm="column" layout-padding>
+    <div flex="33">
+      <md-button ng-click="sendcommand('turn everything off'); sendcommand('turn off the tv'); sendcommand('shut the garage door')"
+        class="custombtn md-primary md-raised" aria-label="Everything Off">
+        
+        Everything Off
+      </md-button>
+    </div>
+    <div flex="33">
+      <md-button ng-click="sendcommand('shut the living room light off'); sendcommand('shut the kitchen lights off'); 
+        sendcommand('shut the back porch light off'); sendcommand('turn off the tv'); sendcommand('shut the garage door')" 
+        class="custombtn md-primary md-raised" aria-label="Living Room Light">
+        
+        Main Floor & Outside Off
+      </md-button>
+    </div>
+    <div flex="33">
+      <md-button ng-click="sendcommand('turn off the tv')" class="custombtn md-primary md-raised" aria-label="TV Off">
+        TV Off
+      </md-button>
+    </div>
+  </div>
+  <div layout-gt-sm="row" layout-sm="column" layout-padding>
+    <div flex="33">
+      <md-button ng-click="sendcommand('close the garage door')" class="custombtn md-primary md-raised" aria-label="Close Garage Door">
+        Close Garage Door
+      </md-button>
+    </div>
+  </div>
+  
+  <md-subheader><h3 class="md-headline">Lights</h3></md-subheader>
+  <div layout-gt-sm="row" layout-sm="column" layout-padding>
+    <div flex="33">
+      <md-menu>
+        <md-button aria-label="Living Room Light" class="custombtn md-primary md-raised" ng-click="openMenu($mdMenu, $event)">
+          Living Room
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="sendcommand('switch the living room light')">
+              On/Off            
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="sendcommand('set the living room light brightness to 60%')">            
+              Brighter
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="sendcommand('set the living room light brightness to 25%')">            
+              Dimmer
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="sendcommand('set the living room light color to incandescent')">            
+              Reset
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+    <div flex="33">
+      <md-menu>
+        <md-button aria-label="Living Room Light" class="custombtn md-primary md-raised" ng-click="openMenu($mdMenu, $event)">
+          Kitchen
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="sendcommand('switch the dining room light')">
+              Dining Room On/Off            
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="sendcommand('switch the galley light')">            
+              Galley On/Off
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+    <div flex="33">
+      <md-button ng-click="sendcommand('switch the back porch light')" class="custombtn md-primary md-raised" aria-label="Back Porch Light">
+        Back Porch
+      </md-button>
+    </div>
+  </div>
+</md-content>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My AngularJS App</title>
+    <link rel="stylesheet" href="lib/angular-material/angular-material.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" href="app.css">
+    <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+  </head>
+  <body>
+    
+    <h1 class="md-display-3" style="text-align: center">J.A.R.V.I.S.</h1>
+    <md-divider></md-divider>
+    
+    <md-content class="md-padding">
+      <md-nav-bar md-selected-nav-item="mainfloor" nav-bar-aria-label="navigation bar">
+        <md-nav-item md-nav-href="#!/mainfloor" name="mainfloor">Main Floor</md-nav-item>
+        <md-nav-item md-nav-href="#!/basement" name="basement">Basement</md-nav-item>    
+      </md-nav-bar>
+    </md-content>
+
+    <div ng-view></div>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+    <script src="lib/angular-aria/angular-aria.min.js"></script>
+    <script src="lib/angular-animate/angular-animate.min.js"></script>
+    <script src="lib/angular-messages/angular-messages.min.js"></script>
+    <script src="lib/angular-material/angular-material.min.js"></script>
+    <script src="app.js"></script>
+    <script src="mainfloor/mainfloor.js"></script>
+    <script src="basement/basement.js"></script>
+    <script src="core/version/version.js"></script>
+    <script src="core/version/version-directive.js"></script>
+    <script src="core/version/interpolate-filter.js"></script>
+  </body>
+</html>
