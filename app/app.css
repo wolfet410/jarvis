@@ -1,36 +1,74 @@
-/* app css stylesheet */
-
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+#content {
+  position: relative;
+  height: 100vh;
+}
+.jarvislogo {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  max-height: 20vh;
 }
 
-.menu:before {
-  content: "[";
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 50vh;
 }
 
-.menu:after {
-  content: "]";
+.pos1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-200%, -200%);
 }
 
-.menu > li {
-  display: inline;
+.pos2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-250%, -50%);
 }
 
-.menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
+.pos3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-200%, 100%);
 }
 
-.custombtn {
-  padding-top: 1.3em;
-  padding-bottom: 1.3em; 
-  padding-right: 2em; 
-  padding-left: 2em; 
-  border-radius: 12px; 
-  background: transparent !important; 
-  border: 3px solid #3F51B5; 
-  box-shadow: 10px 10px 5px #272727;
+.pos4 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 150%);
+}
+
+.pos5 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(100%, 100%);
+}
+
+.pos6 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(150%, -50%);
+}
+
+.pos7 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(100%, -200%);
+}
+
+.pos8 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -250%);
 }

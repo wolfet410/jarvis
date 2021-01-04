@@ -12,7 +12,6 @@ angular.module('myApp.mainfloor', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages
 .controller('MainfloorCtrl', ['$scope', '$http', '$mdDialog', function($scope, $http, $mdDialog) {
   var originatorEv;
   $scope.openMenu = function($mdMenu, ev) {
-console.warn('here' + ev);
     originatorEv = ev;
     $mdMenu.open(ev);
   };
