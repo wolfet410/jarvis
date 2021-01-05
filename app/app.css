@@ -2,11 +2,21 @@
   position: relative;
   height: 100vh;
 }
+
 .jarvislogo {
   position: absolute;
   top: 5px;
   right: 5px;
   max-height: 20vh;
+}
+
+.pagetitle {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color:#00d1fe;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
 }
 
 /* Tablet */
@@ -17,6 +27,25 @@
     left: 331px;
     max-height: 300px;
   }
+
+  .posrighttext {
+    color: #ff7f27;
+    vertical-align: top;
+    padding-left: 5px;
+  }
+
+  .posbottomtext {
+    color: #ff7f27;
+    vertical-align: bottom;
+    padding-left: 5px;
+  }
+
+  .poslefttext {
+    color: #ff7f27;
+    vertical-align: top;
+    padding-right: 5px;
+  }
+
 
   .pos1 {
     position: absolute;
@@ -51,19 +80,19 @@
   .pos6 {
     position: absolute;
     top: 385px;
-    left: 240px;
+    right: 560px;
   }
 
   .pos7 {
     position: absolute;
     top: 225px;
-    left: 176px;
+    right: 625px;
   }
 
   .pos8 {
     position: absolute;
     top: 65px;
-    left: 240px;
+    right: 560px;
   }
 
   .posback {
@@ -82,67 +111,4 @@
 }
 
 @media (min-width: 1025px) {
-  .center {
-    position: absolute;
-    top: 5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-height: 50vh; 
-  }
-
-  .pos1 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-200%, -200%);
-  }
-
-  .pos2 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-250%, -50%);
-  }
-
-  .pos3 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-200%, 100%);
-  }
-
-  .pos4 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 150%);
-  }
-
-  .pos5 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(100%, 100%);
-  }
-
-  .pos6 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(150%, -50%);
-  }
-
-  .pos7 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(100%, -200%);
-  }
-
-  .pos8 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -250%);
-  }
 }

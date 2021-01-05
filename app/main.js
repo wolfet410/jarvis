@@ -1,21 +1,27 @@
 'use strict';
 
-angular.module('myApp.mainfloor', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'ngMaterial'])
+angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'ngMaterial'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/mainfloor', {
-    templateUrl: 'mainfloor/mainfloor.html',
-    controller: 'MainfloorCtrl'
+  $routeProvider.when('/main', {
+    templateUrl: 'main.html',
+    controller: 'Ctrl'
+  }).when('/deactivate', {
+    templateUrl: 'deactivate.html',
+    controller: 'Ctrl'
+  }).when('/basement', {
+    templateUrl: 'basement.html',
+    controller: 'Ctrl'
   });
 }])
 
-.controller('MainfloorCtrl', ['$scope', '$http', '$mdDialog', function($scope, $http, $mdDialog) {
+.controller('Ctrl', ['$scope', '$http', '$location', '$mdDialog', function($scope, $http, $location, $mdDialog) {
   var originatorEv;
   $scope.openMenu = function($mdMenu, ev) {
     originatorEv = ev;
     $mdMenu.open(ev);
   };
-    
+   
   $scope.sendcommand = function(command) {
     
     var data = {

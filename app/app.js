@@ -7,14 +7,13 @@ angular.module('myApp', [
   'ngAnimate',
   'ngMessages',
   'ngMaterial',
-  'myApp.mainfloor',
-  'myApp.basement',
+  'myApp.main',
   'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/mainfloor'});
+  $routeProvider.otherwise({redirectTo: '/main'});
 }]).
 config(function ($mdThemingProvider) {
   $mdThemingProvider.definePalette('black', {
