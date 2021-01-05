@@ -107,6 +107,7 @@
     top: 465px;
     right: 5px;
     transform: rotate(0.25turn);
+    visibility: hidden;
   }
 }
 

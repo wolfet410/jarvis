@@ -9,8 +9,32 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
   }).when('/deactivate', {
     templateUrl: 'deactivate.html',
     controller: 'Ctrl'
+  }).when('/mainfloor', {
+    templateUrl: 'mainfloor.html',
+    controller: 'Ctrl'
   }).when('/basement', {
     templateUrl: 'basement.html',
+    controller: 'Ctrl'
+  }).when('/outside', {
+    templateUrl: 'outside.html',
+    controller: 'Ctrl'
+  }).when('/upstairs', {
+    templateUrl: 'upstairs.html',
+    controller: 'Ctrl'
+  }).when('/livingroom', {
+    templateUrl: 'livingroom.html',
+    controller: 'Ctrl'
+  }).when('/kitchen', {
+    templateUrl: 'kitchen.html',
+    controller: 'Ctrl'
+  }).when('/toddsroom', {
+    templateUrl: 'toddsroom.html',
+    controller: 'Ctrl'
+  }).when('/dylansroom', {
+    templateUrl: 'dylansroom.html',
+    controller: 'Ctrl'
+  }).when('/aubriesroom', {
+    templateUrl: 'aubriesroom.html',
     controller: 'Ctrl'
   });
 }])
