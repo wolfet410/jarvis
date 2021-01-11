@@ -33,8 +33,8 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
   }).when('/dylansroom', {
     templateUrl: 'dylansroom.html',
     controller: 'Ctrl'
-  }).when('/aubriesroom', {
-    templateUrl: 'aubriesroom.html',
+  }).when('/table', {
+    templateUrl: 'table.html',
     controller: 'Ctrl'
   });
 }])

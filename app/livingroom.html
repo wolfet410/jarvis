@@ -4,17 +4,23 @@
   <img src="assets/center.jpg" class="center" />
 
   <md-button class="pos1" ng-click="
-      sendcommand('switch living room light');
-    "><img src="assets/navbtn1.png" height="130px" /><span class="posrighttext">Light On/Off</span>
+      sendcommand('switch living room lamp');
+    "><img src="assets/navbtn1.png" height="130px" /><span class="posrighttext">Lamp On/Off</span>
   </md-button>
+  <md-button class="pos2" ng-click="
+    sendcommand('set living room lamp brightness to 25%');
+    "><img src="assets/navbtn2.png" height="130px" /><span class="posrighttext">Lamp Dimmer</span>
+  </md-button>
+  <md-button class="pos3" ng-click="
+      sendcommand('set living room lamp brightness to 60%');
+    "><img src="assets/navbtn3.png" height="130px" /><span class="posrighttext">Lamp Brighter</span>
+  </md-button>
+  <md-button class="pos5" ng-click="
+      sendcommand('switch the living room wall light');
+    "><img src="assets/navbtn5.png" height="130px" /><span class="posbottomtext">Wall Light On/Off</span></md-button>
   <md-button class="pos6" ng-click="
-    sendcommand('set living room light brightness to 25%');
-    "><span class="poslefttext">Light Dimmer</span><img src="assets/navbtn6.png" height="130px" />
-  </md-button>
-  <md-button class="pos7" ng-click="
-      sendcommand('set living room light brightness to 60%');
-    "><span class="poslefttext">Light Brighter</span><img src="assets/navbtn7.png" height="130px" />
-  </md-button>
+      sendcommand('switch the living room fan');
+    "><span class="poslefttext">Fan On/Off</span><img src="assets/navbtn6.png" height="130px" /></md-button>
 
   <md-button class="posback" ng-href="#!/mainfloor"><img src="assets/dirbtn1.png" height="100px" /></md-button>
   <md-button class="posfwd" ng-href="#!/"><img src="assets/dirbtn1.png" height="100px" /></md-button>

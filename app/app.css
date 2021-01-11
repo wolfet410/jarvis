@@ -1,5 +1,4 @@
 #content {
-  position: relative;
   height: 100vh;
 }
 
@@ -21,6 +20,11 @@
 
 /* Tablet */
 @media (max-width: 1024px) {
+  .table {
+    width: 70vw;
+    padding-left: 15vw;
+  }
+
   .center {
     position: absolute;
     top: 150px;
@@ -112,4 +116,96 @@
 }
 
 @media (min-width: 1025px) {
+  .table {
+    width: 50vw;
+    padding-left: 25vw;
+  }
+
+  .center {
+    position: absolute;
+    top: 275px;
+    left: 520px;
+    max-height: 400px;
+  }
+
+  .posrighttext {
+    color: #ff7f27;
+    vertical-align: top;
+    padding-left: 5px;
+  }
+
+  .posbottomtext {
+    color: #ff7f27;
+    vertical-align: bottom;
+    padding-left: 5px;
+  }
+
+  .poslefttext {
+    color: #ff7f27;
+    vertical-align: top;
+    padding-right: 5px;
+  }
+
+  .pos1 {
+    position: absolute;
+    top: 80px;
+    left: 638px;
+  }
+
+  .pos2 {
+    position: absolute;
+    top: 180px;
+    left: 870px;
+  }
+
+  .pos3 {
+    position: absolute;
+    top: 405px;
+    left: 970px;
+  }
+
+  .pos4 {
+    position: absolute;
+    top: 630px;
+    left: 870px;
+  }
+
+  .pos5 {
+    position: absolute;
+    top: 730px;
+    left: 638px;
+  }
+
+  .pos6 {
+    position: absolute;
+    top: 630px;
+    right: 870px;
+  }
+
+  .pos7 {
+    position: absolute;
+    top: 405px;
+    right: 968px;
+  }
+
+  .pos8 {
+    position: absolute;
+    top: 180px;
+    right: 870px;
+  }
+
+  .posback {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    transform: rotate(-0.25turn);
+  }
+
+  .posfwd {
+    position: absolute;
+    top: 780px;
+    right: 25px;
+    transform: rotate(0.25turn);
+    visibility: hidden;
+  }
 }
