@@ -7,6 +7,7 @@ angular.module('myApp', [
   'ngAnimate',
   'ngMessages',
   'ngMaterial',
+  'ngResource',
   'myApp.main',
   'myApp.version'
 ]).
@@ -41,4 +42,11 @@ config(function ($mdThemingProvider) {
     .warnPalette('red')
     .backgroundPalette('black')
     .dark();
+}).
+factory('factoryApi', function($resource) {
+  var factory = {
+    elements: $resource('http://192.168.86.26:4040/elements/list')
+  };
+  
+  return factory;
 });

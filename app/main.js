@@ -1,45 +1,23 @@
 'use strict';
 
-angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'ngMaterial'])
+angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'ngMaterial', 'ngResource'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/main', {
-    templateUrl: 'main.html',
-    controller: 'Ctrl'
-  }).when('/deactivate', {
-    templateUrl: 'deactivate.html',
-    controller: 'Ctrl'
-  }).when('/mainfloor', {
-    templateUrl: 'mainfloor.html',
-    controller: 'Ctrl'
-  }).when('/basement', {
-    templateUrl: 'basement.html',
-    controller: 'Ctrl'
-  }).when('/outside', {
-    templateUrl: 'outside.html',
-    controller: 'Ctrl'
-  }).when('/upstairs', {
-    templateUrl: 'upstairs.html',
-    controller: 'Ctrl'
-  }).when('/livingroom', {
-    templateUrl: 'livingroom.html',
-    controller: 'Ctrl'
-  }).when('/kitchen', {
-    templateUrl: 'kitchen.html',
-    controller: 'Ctrl'
-  }).when('/toddsroom', {
-    templateUrl: 'toddsroom.html',
-    controller: 'Ctrl'
-  }).when('/dylansroom', {
-    templateUrl: 'dylansroom.html',
-    controller: 'Ctrl'
-  }).when('/table', {
-    templateUrl: 'table.html',
-    controller: 'Ctrl'
+  $routeProvider.when('/:name', {
+    templateUrl: function(urlattr) {
+      return urlattr.name + '.html';
+    },
+    controller: 'Ctrl',
+    resolve: {
+      resolvedElements: function(factoryApi) {
+				return factoryApi.elements.get().$promise;
+			}
+    }
   });
 }])
 
-.controller('Ctrl', ['$scope', '$http', '$location', '$mdDialog', function($scope, $http, $location, $mdDialog) {
+.controller('Ctrl', ['$scope', '$http', '$location', '$mdDialog', 'resolvedElements', function($scope, $http, $location, $mdDialog, resolvedElements) {
+  window.$scope = $scope; // For troubleshooting, can remove in production
   var originatorEv;
   $scope.openMenu = function($mdMenu, ev) {
     originatorEv = ev;
@@ -47,7 +25,6 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
   };
    
   $scope.sendcommand = function(command) {
-    
     var data = {
       command: command,
       converse: false,
@@ -59,4 +36,6 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
         console.warn(response);
     });
   }
+  
+  $scope.elements = resolvedElements;
 }]);
