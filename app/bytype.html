@@ -9,38 +9,38 @@
       <md-list ng-cloak>
 
         <md-subheader class="md-no-sticky">Custom</md-subheader>
-        <md-list-item class="secondary-button-padding" ng-repeat="item in elements.data | filter:{type: 'custom'}">
-          <p>{{ item.name }}</p>
+        <md-list-item class="secondary-button-padding" ng-repeat="item in viewpagebuttons.data | filter:{type: 'custom'}">
+          <p>{{ item.pagesname }} {{ item.elementsname }}</p>
           <md-button class="md-secondary" ng-click="sendcommand(item.customcommand);"><i class="material-icons" style="color:green; font-size:36px">play_circle_outline</i></md-button>
         </md-list-item>
 
         <md-divider></md-divider>  
         <md-subheader class="md-no-sticky">Lights</md-subheader>
-        <md-list-item class="secondary-button-padding" ng-repeat="item in elements.data | filter:{type: 'custom'}">
-          <p>{{ item.name }}</p>
-          <md-button class="md-fab md-mini md-raised" ng-click=""><i class="material-icons" style="color:green; font-size:36px">power_settings_new</i></md-button>
-          <md-button class="md-fab md-mini md-raised" ng-click=""><i class="material-icons" style="color:red; font-size:36px">power_settings_new</i></md-button>
-          <md-button class="md-fab md-mini md-raised" ng-show="item.hasdimmer" ng-click=""><i class="material-icons" style="color:yellow">brightness_high</i></md-button>
-          <md-button class="md-fab md-mini md-raised" ng-show="item.hasdimmer" ng-click=""><i class="material-icons" style="color:gray">brightness_low</i></md-button>
-          <md-button class="md-fab md-mini md-raised" ng-show="item.hascolor" ng-click=""><i class="material-icons" style="color:purple">emoji_objects</i></md-button>
-          <md-button class="md-fab md-mini md-raised" ng-show="item.hascolor" ng-click=""><i class="material-icons" style="color:yellow">emoji_objects</i></md-button>
-          <md-button class="md-fab md-mini md-raised" ng-show="item.hascolor" ng-click=""><i class="material-icons" style="color:white">emoji_objects</i></md-button>
+        <md-list-item class="secondary-button-padding" ng-repeat="item in viewpagebuttons.data | filter:{type: 'light'}">
+          <p>{{ item.pagesname }} {{ item.elementsname }}</p>
+          <md-button class="md-fab md-mini md-raised" ng-click="send(item,'on')"><i class="material-icons" style="color:green; font-size:36px">power_settings_new</i></md-button>
+          <md-button class="md-fab md-mini md-raised" ng-click="send(item,'off')"><i class="material-icons" style="color:red; font-size:36px">power_settings_new</i></md-button>
+          <md-button class="md-fab md-mini md-raised" ng-show="item.hasdimmer" ng-click="send(item,'brighter')"><i class="material-icons" style="color:yellow">brightness_high</i></md-button>
+          <md-button class="md-fab md-mini md-raised" ng-show="item.hasdimmer" ng-click="send(item,'dimmer')"><i class="material-icons" style="color:gray">brightness_low</i></md-button>
+          <md-button class="md-fab md-mini md-raised" ng-show="item.hascolor" ng-click="send(item,'purple')"><i class="material-icons" style="color:purple">emoji_objects</i></md-button>
+          <md-button class="md-fab md-mini md-raised" ng-show="item.hascolor" ng-click="send(item,'incandescent')"><i class="material-icons" style="color:yellow">emoji_objects</i></md-button>
+          <md-button class="md-fab md-mini md-raised" ng-show="item.hascolor" ng-click="send(item,'white')"><i class="material-icons" style="color:white">emoji_objects</i></md-button>
         </md-list-item>
 
         <md-divider></md-divider>
         <md-subheader class="md-no-sticky">Plugs</md-subheader>
-        <md-list-item class="secondary-button-padding" ng-repeat="item in elements.data | filter:{type: 'plug'}">
-          <p>{{ item.name }}</p>
-          <md-button class="md-secondary" ng-click=""><i class="material-icons" style="color:green">power_settings_new</i></md-button>
-          <md-button class="md-secondary" ng-click=""><i class="material-icons" style="color:red">power_settings_new</i></md-button>
+        <md-list-item class="secondary-button-padding" ng-repeat="item in viewpagebuttons.data | filter:{type: 'plug'}">
+          <p>{{ item.pagesname }} {{ item.elementsname }}</p>
+          <md-button class=md-fab md-mini md-raised" ng-click="send(item,'on')"><i class="material-icons" style="color:green; font-size:36px">power_settings_new</i></md-button>
+          <md-button class="md-fab md-mini md-raised" ng-click="send(item,'off')"><i class="material-icons" style="color:red; font-size:36px">power_settings_new</i></md-button>
         </md-list-item>
 
         <md-divider></md-divider>
         <md-subheader class="md-no-sticky">Fans</md-subheader>
-        <md-list-item class="secondary-button-padding" ng-repeat="item in elements.data | filter:{type: 'fan'}">
-          <p>{{ item.name }}</p>
-          <md-button class="md-secondary" ng-click=""><i class="material-icons" style="color:green">power_settings_new</i></md-button>
-          <md-button class="md-secondary" ng-click=""><i class="material-icons" style="color:red">power_settings_new</i></md-button>
+        <md-list-item class="secondary-button-padding" ng-repeat="item in viewpagebuttons.data | filter:{type: 'fan'}">
+          <p>{{ item.pagesname }} {{ item.elementsname }}</p>
+          <md-button class="md-fab md-mini md-raised" ng-click="send(item,'on')"><i class="material-icons" style="color:green; font-size:36px">power_settings_new</i></md-button>
+          <md-button class="md-fab md-mini md-raised" ng-click="send(item, 'off')"><i class="material-icons" style="color:red; font-size:36px">power_settings_new</i></md-button>
         </md-list-item>
 
       </md-list>
