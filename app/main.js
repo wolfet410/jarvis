@@ -58,7 +58,9 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
         gotoPage(item.destpagesid);
         break;
       case 'custom':
-        console.warn(item.customcommand); //foreach this
+        angular.forEach(item.customcommand.split(';'),function(command) {
+          $scope.sendcommand(command);
+        });
         break;
       case 'light':
       case 'fan':
