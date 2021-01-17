@@ -18,6 +18,13 @@
   text-orientation: upright;
 }
 
+.md-toolbar-tools {
+  background-color: #000;
+  outline-color: #00d1fe;
+  outline-style: solid;
+  color: #ff7f27;
+}
+
 /* Tablet */
 @media (max-width: 1024px) {
   .table {
@@ -111,7 +118,6 @@
     top: 465px;
     right: 5px;
     transform: rotate(0.25turn);
-    visibility: hidden;
   }
 }
 

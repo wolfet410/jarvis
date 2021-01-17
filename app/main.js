@@ -9,6 +9,9 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
     },
     controller: 'Ctrl',
     resolve: {
+      resolvedPages: function(factoryApi) {
+				return factoryApi.pages.get().$promise;
+			},
       resolvedViewpagebuttons: function(factoryApi) {
 				return factoryApi.viewpagebuttons.get().$promise;
 			}
@@ -16,8 +19,19 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
   });
 }])
 
-.controller('Ctrl', ['$scope', '$http', '$location', '$mdDialog', 'resolvedViewpagebuttons', function($scope, $http, $location, $mdDialog, resolvedViewpagebuttons) {
+.controller('Ctrl', ['$scope', '$http', '$location', '$mdDialog', '$filter', 'resolvedViewpagebuttons', 'resolvedPages', 
+    function($scope, $http, $location, $mdDialog, $filter, resolvedViewpagebuttons, resolvedPages) {
+
   window.$scope = $scope; // For troubleshooting, can remove in production
+  var gotoPage = function(pagesid) {
+    $scope.page = resolvedPages.data[pagesid];
+    $scope.pagebuttons = $filter('filter')(resolvedViewpagebuttons.data, { pagesid: pagesid});
+    for (var i = 1; i < 9; i++) {
+      $scope['button' + i] = $filter('filter')($scope.pagebuttons, { position: i })[0];
+    }
+  };
+  gotoPage(0);
+
   var originatorEv;
   $scope.openMenu = function($mdMenu, ev) {
     originatorEv = ev;
@@ -35,6 +49,32 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
       .then(function(response) {
         console.warn(response);
     });
+  }
+
+  $scope.guess = function(item, event) {
+    // Reads the item to determine what action to perform based on the type
+    switch (item.type) {
+      case 'page':
+        gotoPage(item.destpagesid);
+        break;
+      case 'custom':
+        console.warn(item.customcommand); //foreach this
+        break;
+      case 'light':
+      case 'fan':
+      case 'plug':
+        $scope.dialogbutton = $scope[event.target.id];
+        $mdDialog.show({
+          targetEvent: event,
+          locals: { parent: $scope },
+          controller: angular.noop,
+          controllerAs: 'dialogctrl',
+          bindToController: true,
+          templateUrl: 'dialog.html',
+          clickOutsideToClose: true
+        });
+        break;
+    }
   }
   
   $scope.send = function(item, action) {
@@ -56,17 +96,6 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
         break;
     }
 
-    var data = {
-      command: command,
-      converse: false,
-      user: "wolfet410@gmail.com"
-    };
-    
-    $http.post('http://192.168.86.26:3001/assistant', JSON.stringify(data))
-      .then(function(response) {
-        console.warn(response);
-    });
+    $scope.sendcommand(command);
   }
-  
-  $scope.viewpagebuttons = resolvedViewpagebuttons;
 }]);

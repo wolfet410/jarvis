@@ -45,6 +45,7 @@ config(function ($mdThemingProvider) {
 }).
 factory('factoryApi', function($resource) {
   var factory = {
+    pages: $resource('http://192.168.86.26:4040/pages/list'),
     viewpagebuttons: $resource('http://192.168.86.26:4040/viewpagebuttons/list')
   };
   
