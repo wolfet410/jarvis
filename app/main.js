@@ -40,46 +40,34 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
     $mdMenu.open(ev);
   };
    
-  $scope.sendcommand = function(command, i) {
-console.warn(i);
-// closer, i increments but the UI doesn't get updated
-// the problem with timeout is it schedules it and then the code moves on, because it's all async
-// i need to either make it sync, or rethink this
-// now we are back to trying to code this async
-// maybe a sendcommand function that tracks i, and calls each one on the success (or failure) of the last one
-
-
-/** so this
-send first command
-- if i is undefined, then change dialog buttons to text that says command .... Executing
-- on return, close dialog
-
-- if i is defined, then:
-- open status modal
-- list commands .... Waiting
-- first one gets set to .... Executing
-- when first is done, on success, change [i]status to Done, increment i, change [i]status to Executing, and send next $http POST
-**/
-
+  $scope.sendcommand = function(i) {
+    $scope.commandsobject[i].status = "Executing";
 
     var data = {
-      command: command,
+      command: $scope.commandsobject[i].command,
       converse: false,
       user: "user0121"
+      // user: "fail"
     };
     
-    // Synchronous POST instead of $http async
-    var xhr = new XMLHttpRequest();
-    var url = "http://192.168.86.26:3001/assistant";
-    xhr.open("POST", url, false);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(data));
-    if (typeof $scope.commandsobject[i] !== "undefined") {
-      $scope.commandsobject[i].status = "Done";
-    }
-    if (typeof $scope.commandsobject[i+1] !== "undefined") {
-      $scope.commandsobject[i+1].status = "Executing";
-    }
+    $http.post('http://192.168.86.26:3001/assistant', JSON.stringify(data))
+      .then(function success(response) {
+        if (typeof $scope.commandsobject[i+1] === "undefined") {
+          $scope.commandsobject[i].status = "Done";          
+          $timeout(function() { $mdDialog.hide(); }, 2000);
+        } else {
+          $scope.commandsobject[i].status = "Done";
+          $scope.sendcommand(i+1);  
+        }      
+      }, function error(response) {
+        if (typeof $scope.commandsobject[i+1] === "undefined") {
+          $scope.commandsobject[i].status = "Failed";
+          $timeout(function() { $mdDialog.hide(); }, 2000);
+        } else {
+          $scope.commandsobject[i].status = "Failed";
+          $scope.sendcommand(i+1);  
+        }
+      });
   };
 
   $scope.send = function(item, action) {
@@ -88,20 +76,28 @@ send first command
     switch (action) {
       case 'on':
       case 'off':
-        command = "turn " + action + " the " + item.pagesname + " " + item.elementsname;
+        command = "Turn " + action + " the " + item.pagesname + " " + item.elementsname;
         break;
       case 'brighter':
       case 'dimmer':
-        command = "make the " + item.pagesname + " " + item.elementsname + " " + action;
+        command = "Make the " + item.pagesname + " " + item.elementsname + " " + action;
         break;
       case 'purple':
       case 'incandescent':
       case 'white':
-        command = "set the " + item.pagesname + " " + item.elementsname + " to " + action;
+        command = "Set the " + item.pagesname + " " + item.elementsname + " to " + action;
         break;
     }
 
-    $scope.sendcommand(command);
+    $scope.commandsobject = {};
+    $scope.commandsobject[0] = {
+      command: command,
+      status: "Waiting"
+    };
+
+    $scope.dialog.showstatus = true;
+    $scope.dialog.showbuttons = false;
+    $scope.sendcommand(0);
   }
 
   $scope.guess = function(item, event) {
@@ -111,21 +107,25 @@ send first command
         gotoPage(item.destpagesid);
         break;
       case 'custom':
-        $scope.dialogbutton = $scope[event.target.id];
+        $scope.dialog = {
+          showstatus: true,
+          showbuttons: false,
+          title: $scope[event.target.id].elementsname
+        };
         $mdDialog.show({
           targetEvent: event,
           locals: { parent: $scope },
           controller: angular.noop,
           controllerAs: 'dialogctrl',
           bindToController: true,
-          templateUrl: 'status.html',
+          templateUrl: 'dialog.html?' + +new Date(),
           clickOutsideToClose: false
         });
         
+        // Building commandsobject
         var commands = item.customcommand.split(';');
         $scope.elementsname = item.elementsname;
         $scope.commandsobject = {};
-        
         var i = 0;
         angular.forEach(commands,function(command) {
           $scope.commandsobject[i] = {
@@ -135,29 +135,25 @@ send first command
           i++;
         });
 
-        i = 0;
-        $scope.commandsobject[0].status = "Executing";
-        $timeout(function () {
-          angular.forEach(commands,function(command) {
-            //$scope.commandsobject[i].status = "Executing";
-            $scope.sendcommand(command, i);
-            //$scope.commandsobject[i].status = "Done";
-            i++;
-          });
-        }, 500);        
-        // $mdDialog.hide();
+        // Sending first command
+        $scope.sendcommand(0);
         break;
       case 'light':
       case 'fan':
       case 'plug':
-        $scope.dialogbutton = $scope[event.target.id];
+        $scope.dialog = {
+          showstatus: false,
+          showbuttons: true,
+          target: $scope[event.target.id],
+          title: $scope[event.target.id].pagesname + " " + $scope[event.target.id].elementsname
+        };
         $mdDialog.show({
           targetEvent: event,
           locals: { parent: $scope },
           controller: angular.noop,
           controllerAs: 'dialogctrl',
           bindToController: true,
-          templateUrl: 'dialog.html',
+          templateUrl: 'dialog.html?' + +new Date(),
           clickOutsideToClose: true
         });
         break;
