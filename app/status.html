@@ -2,14 +2,15 @@
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Custom command name</h2>
+        <h2>{{ dialogctrl.parent.elementsname }}</h2>
       </div>
     </md-toolbar>
 
     <md-dialog-content class="dialogoutline">
       <div class="md-dialog-content">
-        Turn on living room wall light .... Done
-        Turn off living room wall light .... Executing
+        <p ng-repeat="co in dialogctrl.parent.commandsobject">
+          {{ co.command }} ... {{ co.status }}
+        </p>
       </div>
     </md-dialog-content>
   </form>
