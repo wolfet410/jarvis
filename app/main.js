@@ -23,15 +23,17 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
     function($scope, $http, $location, $mdDialog, $filter, resolvedViewpagebuttons, resolvedPages) {
 
   window.$scope = $scope; // For troubleshooting, can remove in production
+  $scope.viewpagebuttons = resolvedViewpagebuttons;
+  
   var gotoPage = function(pagesid) {
     $scope.page = resolvedPages.data[pagesid];
-    $scope.pagebuttons = $filter('filter')(resolvedViewpagebuttons.data, { pagesid: pagesid});
+    $scope.pagebuttons = $filter('filter')(resolvedViewpagebuttons.data, { pagesid: pagesid }, true);
     for (var i = 1; i < 9; i++) {
-      $scope['button' + i] = $filter('filter')($scope.pagebuttons, { position: i })[0];
+      $scope['button' + i] = $filter('filter')($scope.pagebuttons, { position: i }, true)[0];
     }
   };
   gotoPage(0);
-
+  
   var originatorEv;
   $scope.openMenu = function($mdMenu, ev) {
     originatorEv = ev;
@@ -42,13 +44,15 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
     var data = {
       command: command,
       converse: false,
-      user: "wolfet410@gmail.com"
+      user: "user0121"
     };
     
-    $http.post('http://192.168.86.26:3001/assistant', JSON.stringify(data))
-      .then(function(response) {
-        console.warn(response);
-    });
+    // Synchronous POST instead of $http async
+    var xhr = new XMLHttpRequest();
+    var url = "http://192.168.86.26:3001/assistant";
+    xhr.open("POST", url, false);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(data));
   }
 
   $scope.guess = function(item, event) {
@@ -58,9 +62,23 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
         gotoPage(item.destpagesid);
         break;
       case 'custom':
-        angular.forEach(item.customcommand.split(';'),function(command) {
-          $scope.sendcommand(command);
+        $scope.dialogbutton = $scope[event.target.id];
+        $mdDialog.show({
+          targetEvent: event,
+          locals: { parent: $scope },
+          controller: angular.noop,
+          controllerAs: 'dialogctrl',
+          bindToController: true,
+          templateUrl: 'status.html',
+          clickOutsideToClose: false
         });
+
+        //var commands = item.customcommand.split(';');
+        //angular.forEach(commands,function(command) {
+//          $scope.progresspercent = (i / commands.length) * 100;
+ //         $scope.command = command;
+   //       $scope.sendcommand(command);
+       // });
         break;
       case 'light':
       case 'fan':

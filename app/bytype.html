@@ -1,18 +1,12 @@
 <div id="content">
   <div class="md-headline pagetitle"></div>
-  <a ng-href="#!/main"><img src="assets/jarvislogo.jpg" class="jarvislogo" /></a>
+  <a ng-href="#!/circles"><img src="assets/jarvislogo.jpg" class="jarvislogo" /></a>
   <!-- <md-button class="posback" ng-href="#!/livingroom"><img src="assets/dirbtn1.png" height="100px" /></md-button> -->
-  <md-button class="posfwd" ng-href="#!/main"><img src="assets/dirbtn1.png" height="100px" /></md-button>
+  <md-button class="posfwd" ng-href="#!/circles"><img src="assets/dirbtn1.png" height="100px" /></md-button>
   
   <div class="table">
-    <md-content>
+    <md-content style="height:100vh; scrollbar-width: none;" layout-padding>
       <md-list ng-cloak>
-
-        <md-subheader class="md-no-sticky">Custom</md-subheader>
-        <md-list-item class="secondary-button-padding" ng-repeat="item in viewpagebuttons.data | filter:{type: 'custom'}">
-          <p>{{ item.pagesname }} {{ item.elementsname }}</p>
-          <md-button class="md-secondary" ng-click="sendcommand(item.customcommand);"><i class="material-icons" style="color:green; font-size:36px">play_circle_outline</i></md-button>
-        </md-list-item>
 
         <md-divider></md-divider>  
         <md-subheader class="md-no-sticky">Lights</md-subheader>
@@ -41,6 +35,12 @@
           <p>{{ item.pagesname }} {{ item.elementsname }}</p>
           <md-button class="md-fab md-mini md-raised" ng-click="send(item,'on')"><i class="material-icons" style="color:green; font-size:36px">power_settings_new</i></md-button>
           <md-button class="md-fab md-mini md-raised" ng-click="send(item, 'off')"><i class="material-icons" style="color:red; font-size:36px">power_settings_new</i></md-button>
+        </md-list-item>
+
+        <md-subheader class="md-no-sticky">Custom</md-subheader>
+        <md-list-item class="secondary-button-padding" ng-repeat="item in viewpagebuttons.data | filter:{type: 'custom'}">
+          <p>{{ item.pagesname }} {{ item.elementsname }}</p>
+          <md-button class="md-secondary" ng-click="sendcommand(item.customcommand);"><i class="material-icons" style="color:green; font-size:36px">play_circle_outline</i></md-button>
         </md-list-item>
 
       </md-list>

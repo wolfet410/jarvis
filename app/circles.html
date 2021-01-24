@@ -1,6 +1,6 @@
 <div id="content">
   <div class="md-headline pagetitle">{{ page.name }}</div>
-  <a ng-href="#!/main"><img src="assets/jarvislogo.jpg" class="jarvislogo" /></a>
+  <a ng-href="#!/circles"><img src="assets/jarvislogo.jpg" class="jarvislogo" /></a>
   <img src="assets/center.jpg" class="center" />
   <md-button id="button1" class="pos1" ng-show="button1 != null" ng-click="guess(button1, $event)"><img id="button1" src="assets/navbtn1.png" height="130px" /><span id="button1" class="posrighttext">{{ button1.elementsname }}</span></md-button>
   <md-button id="button2" class="pos2" ng-show="button2 != null" ng-click="guess(button2, $event)"><img id="button2" src="assets/navbtn2.png" height="130px" /><span id="button2" class="posrighttext">{{ button2.elementsname }}</span></md-button>
@@ -12,4 +12,10 @@
   <md-button id="button8" class="pos8" ng-show="button8 != null" ng-click="guess(button8, $event)"><span id="button8" class="poslefttext">{{ button8.elementsname }}</span><img id="button8" src="assets/navbtn8.png" height="130px" /></md-button>
   <md-button class="posback" ng-show="page.parentpagesid != null" ng-click="guess({type: 'page',destpagesid: page.parentpagesid}, $event)"><img src="assets/dirbtn1.png" height="100px" /></md-button>
   <md-button class="posfwd" ng-href="#!/bytype"><img src="assets/dirbtn1.png" height="100px" /></md-button>
+  <!--<div class="container visible"> <!--  ng-class="{'visible' : customrunning}" -->
+    <!--<md-progress-linear md-mode="determinate" value="{{ progresspercent }}"></md-progress-linear>
+    <div class="bottom-block">
+      <span>Running: {{ command }}</span>
+    </div>
+  </div>-->
 </div>
