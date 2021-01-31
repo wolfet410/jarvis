@@ -46,7 +46,7 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
     var data = {
       command: $scope.commandsobject[i].command,
       converse: false,
-      user: "user0121"
+      user: "user0130"
       // user: "fail"
     };
     
@@ -70,10 +70,52 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
       });
   };
 
-  $scope.send = function(item, action) {
+  $scope.send = function(item, action, event) {
     var command;
+
+    if (event) {
+      // bytype.html sends event, circles.html does not
+
+      if (item.type === 'custom') {
+        // Building commandsobject
+        var commands = item.customcommand.split(';');
+        $scope.elementsname = item.elementsname;
+        $scope.commandsobject = {};
+        var i = 0;
+        angular.forEach(commands,function(command) {
+          $scope.commandsobject[i] = {
+            command: command,
+            status: "Waiting"
+          };
+          i++;
+        });
+      }
+
+      $scope.dialog = {
+        showstatus: true,
+        showbuttons: false,
+        target: event.target.id,
+        title: event.target.id
+      };
+
+      $mdDialog.show({
+        targetEvent: event,
+        locals: { parent: $scope },
+        controller: angular.noop,
+        controllerAs: 'dialogctrl',
+        bindToController: true,
+        templateUrl: 'dialog.html?' + +new Date(),
+        clickOutsideToClose: true
+      });
+    }
     
     switch (action) {
+      case 'custom':
+        $scope.dialog.showstatus = true;
+        $scope.dialog.showbuttons = false;
+        $scope.sendcommand(0);
+        return
+        break;
       case 'on':
       case 'off':
         command = "Turn " + action + " the " + item.pagesname + " " + item.elementsname;
@@ -102,26 +144,10 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
 
   $scope.guess = function(item, event) {
     // Reads the item to determine what action to perform based on the type
-    switch (item.type) {
-      case 'page':
-        gotoPage(item.destpagesid);
-        break;
-      case 'custom':
-        $scope.dialog = {
-          showstatus: true,
-          showbuttons: false,
-          title: $scope[event.target.id].elementsname
-        };
-        $mdDialog.show({
-          targetEvent: event,
-          locals: { parent: $scope },
-          controller: angular.noop,
-          controllerAs: 'dialogctrl',
-          bindToController: true,
-          templateUrl: 'dialog.html?' + +new Date(),
-          clickOutsideToClose: false
-        });
-        
+    if (item.type === 'page') {
+      gotoPage(item.destpagesid);
+    } else {
+      if (item.type === 'custom') {
         // Building commandsobject
         var commands = item.customcommand.split(';');
         $scope.elementsname = item.elementsname;
@@ -134,29 +160,24 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
           };
           i++;
         });
+      }
 
-        // Sending first command
-        $scope.sendcommand(0);
-        break;
-      case 'light':
-      case 'fan':
-      case 'plug':
-        $scope.dialog = {
-          showstatus: false,
-          showbuttons: true,
-          target: $scope[event.target.id],
-          title: $scope[event.target.id].pagesname + " " + $scope[event.target.id].elementsname
-        };
-        $mdDialog.show({
-          targetEvent: event,
-          locals: { parent: $scope },
-          controller: angular.noop,
-          controllerAs: 'dialogctrl',
-          bindToController: true,
-          templateUrl: 'dialog.html?' + +new Date(),
-          clickOutsideToClose: true
-        });
-        break;
+      $scope.dialog = {
+        showstatus: false,
+        showbuttons: true,
+        target: $scope[event.target.id],
+        title: $scope[event.target.id].pagesname + " " + $scope[event.target.id].elementsname
+      };
+
+      $mdDialog.show({
+        targetEvent: event,
+        locals: { parent: $scope },
+        controller: angular.noop,
+        controllerAs: 'dialogctrl',
+        bindToController: true,
+        templateUrl: 'dialog.html?' + +new Date(),
+        clickOutsideToClose: true
+      });
     }
   }
 
