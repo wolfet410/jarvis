@@ -19,12 +19,28 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
   });
 }])
 
-.controller('Ctrl', ['$scope', '$http', '$location', '$mdDialog', '$filter', '$timeout', 'resolvedViewpagebuttons', 'resolvedPages', 
+.controller('Ctrl', ['$scope', '$http', '$location', '$mdDialog', '$filter', '$timeout', 'resolvedViewpagebuttons', 'resolvedPages',
     function($scope, $http, $location, $mdDialog, $filter, $timeout, resolvedViewpagebuttons, resolvedPages) {
 
   window.$scope = $scope; // For troubleshooting, can remove in production
   $scope.viewpagebuttons = resolvedViewpagebuttons;
-  
+
+  // Using Hammer native, not via Angular
+  var hmContent = document.getElementById('content');
+  var hmEvent = new Hammer(hmContent);
+  hmEvent.on("swipeleft", 
+    function(event) {
+      console.warn('left');
+      $location.url('/#!/circles');
+      gotoPage(0);
+    });
+
+  hmEvent.on("swiperight", 
+    function(event) {
+      console.warn('right');
+      $location.url('/#!/bytype');
+    });
+
   var gotoPage = function(pagesid) {
     $scope.page = resolvedPages.data[pagesid];
     $scope.pagebuttons = $filter('filter')(resolvedViewpagebuttons.data, { pagesid: pagesid }, true);
@@ -72,6 +88,7 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
 
   $scope.send = function(item, action, event) {
     var command;
+    new Audio("assets/click2.mp3").play();
 
     if (event) {
       // bytype.html sends event, circles.html does not
@@ -144,6 +161,8 @@ angular.module('myApp.main', ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages', 'n
 
   $scope.guess = function(item, event) {
     // Reads the item to determine what action to perform based on the type
+    new Audio("assets/click.mp3").play();
+
     if (item.type === 'page') {
       gotoPage(item.destpagesid);
     } else {
